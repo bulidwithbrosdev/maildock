@@ -4,16 +4,16 @@ import type { AppSettings } from '../db/settings';
 import type { SessionUser } from '../types';
 import { all, first, run } from '../db/db';
 import { newId } from '../lib/ids';
-import { badRequest, conflict, errorMessage, notFound } from '../lib/errors';
-import { log, logError } from '../lib/log';
+import { badRequest, conflict, errorMessage } from '../lib/errors';
+import { logError } from '../lib/log';
 import { parseJson } from '../lib/json';
-import { CfError, cfFromEnv, type Cloudflare } from '../cloudflare/client';
+import { type Cloudflare } from '../cloudflare/client';
 import { applyRecords, type DnsRecordSpec, type CfDnsRecord } from '../cloudflare/dns';
 import { attachCustomDomain } from '../cloudflare/workers';
-import { getCatchAll, getRouting, setCatchAllToWorker, listRules, type RoutingRule } from '../cloudflare/email-routing';
+import { getCatchAll, getRouting, setCatchAllToWorker } from '../cloudflare/email-routing';
 import { audit } from './audit';
-import { getDomain, requireCf, requireWorker, type DomainRow } from './domains';
-import { adapterFor, type ProviderRow } from '../providers';
+import { getDomain, requireCf, requireWorker } from './domains';
+import type { ProviderRow } from '../providers';
 import { PROVIDER_INFO } from '../../shared/constants';
 
 export interface ProvisioningLogEntry {

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, AtSign, ChevronRight, CircleCheck, Clock, Copy, Crown, KeyRound, Mail, Minus, RefreshCw, Search, ShieldCheck, ShieldOff, UserPlus, UsersRound } from 'lucide-react';
+import { ArrowLeft, AtSign, CircleCheck, Clock, Copy, Crown, KeyRound, Mail, Search, ShieldCheck, ShieldOff, UserPlus, UsersRound } from 'lucide-react';
 import { del, get, patch, post, put, errorText } from '../../lib/api';
 import { timeAgo } from '../../lib/format';
 import { useAction, useInvalidate } from '../../lib/hooks';

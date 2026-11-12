@@ -9,7 +9,6 @@ import {
   LogIn,
   Send,
   ShieldCheck,
-  UserRound,
 } from 'lucide-react';
 import { post, errorText } from '../../lib/api';
 import { useRefreshSession, useSession } from '../../lib/session';

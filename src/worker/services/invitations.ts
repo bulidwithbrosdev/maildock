@@ -1,8 +1,8 @@
 // User account activation invitations and credential delivery
 import type { Env } from '../env';
 import { all, first, run } from '../db/db';
-import { loadSettings, type AppSettings } from '../db/settings';
-import { badRequest, errorMessage, HttpError, notFound, tooMany } from '../lib/errors';
+import { loadSettings } from '../db/settings';
+import { badRequest, errorMessage, notFound, tooMany } from '../lib/errors';
 import { randomToken, sha256Hex } from '../lib/crypto';
 import { hashPassword, passwordProblem } from '../lib/password';
 import { domainOf, isValidAddress, type Address } from '../mail/address';
@@ -10,7 +10,7 @@ import { buildMime } from '../mail/mime';
 import { newMessageId } from '../mail/threading';
 import { adapterFor, type ProviderRow } from '../providers';
 import { audit, auditStmt } from './audit';
-import { getUser, type UserRow } from './users';
+import { getUser } from './users';
 import type { SessionUser } from '../types';
 import type { OutgoingMessage } from '../providers/types';
 import { PROVIDER_INFO } from '../../shared/constants';
@@ -225,7 +225,7 @@ export async function sendInvitation(
     await run(env.DB, 'UPDATE users SET alternate_email = ? WHERE id = ?', recipientEmail, userId);
   }
 
-  const { id: invitationId, token, expiresAt } = await createInvitationToken(env.DB, userId, recipientEmail);
+  const { id: invitationId, token } = await createInvitationToken(env.DB, userId, recipientEmail);
 
   const baseOrigin = settings.appUrl || origin || 'http://localhost:5173';
   const webmailUrl = baseOrigin.replace(/\/+$/, '');
