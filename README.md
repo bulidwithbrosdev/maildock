@@ -262,8 +262,6 @@ MAILJET_API_BASE=http://127.0.0.1:8790/mailjet
 WORKER_NAME=maildock
 ```
 
-Copy from [`.dev.vars.example`](.dev.vars.example) for a documented template.
-
 ### Project structure
 
 ```

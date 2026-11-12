@@ -7,12 +7,9 @@ playwright-report/
 test/fixtures/generated/
 docs
 
-# Secrets: local dev vars, live-test credentials, private notes
+# Secrets and dev vars: local dev vars, live-test credentials, private notes
 .dev.vars
-.dev.vars.local
-.dev.vars.production
-# Keep the example template committed so new contributors can see required vars
-# .dev.vars.example is intentionally NOT ignored
+.dev.vars.*
 .env
 .env.*
 .live.env
